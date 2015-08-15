@@ -1,0 +1,167 @@
+---
+- name: Sistem güncellemeleri yükleniyor
+  apt: update_cache=yes
+
+- name: Çokluortam kodek paketleri yazılım deposu ekleniyor
+  apt_repository: repo={{ item }}
+                  state=present
+  with_items:
+    - 'ppa:mc3man/trusty-media'
+
+- name: Çokluortam kod çözücü paketleri kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - ubuntu-restricted-extras
+    - ffmpeg
+    - gstreamer0.10-plugins-ugly
+    - libavcodec-extra-54
+    - libvdpau-va-gl1
+    - libmad0
+    - mpg321
+    - gstreamer1.0-libav
+
+- name: Otomatik DVD/CD medya oynatımı etkinleştiriliyor
+  command: sudo /usr/share/doc/libdvdread4/install-css.s­h
+
+- name: Vlc Media Player kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - vlc
+
+- name: Flash Player eklentisi kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - flashplugin-installer
+
+- name: Java yazılım deposu ekleniyor
+  apt_repository: repo={{ item }}
+                  state=present
+  with_items:
+    - 'ppa:webupd8team/java'
+
+- name: Java kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - oracle-java9-installer
+
+- name: Arşiv formatları için destekler ve kısıtlı ekstralar kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - unace
+    - rar
+    - unrar
+    - p7zip-rar
+    - p7zip
+    - sharutils
+    - uudeview
+    - mpack
+    - arj
+    - cabextract
+    - lzip
+    - lunzip
+
+- name: LibreOffice kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - libreoffice
+    - libreoffice-gtk
+    - libreoffice-style-sifr
+
+- name: Web Tarayıcıları kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - chromium-browser
+    - firefox
+
+- name: Torrent istemcisi kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - transmission
+
+- name: İndirme yöneticisi indiriliyor
+  command: wget http://xdman.sourceforge.net/xdman_mint_ubuntu.deb
+
+- name: İndirme yöneticisi kuruluyor
+  command: sudo dpkg -i xdman_mint_ubuntu.deb
+
+- name: Grafik düzenleyiciler kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - gimp
+    - inkscape
+
+- name: Indicator Synapse kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - indicator-synapse
+
+- name: Elementary Tweak yazılım deposu ekleniyor
+  apt_repository: repo={{ item }}
+                  state=present
+  with_items:
+    - 'ppa:mpstark/elementary-tweaks-daily'
+
+- name: Elementary Tweak kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - elementary-tweak
+
+- name: Skype kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - skype
+
+- name: Steam oyun istemcisi kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - steam
+
+- name: Bleachbit sistem temizleyici kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - bleachbit
+
+- name: TLP Pil ömrü koruyucu ve Isı dengeleyici yazılım deposu ekleniyor
+  apt_repository: repo={{ item }}
+                  state=present
+  with_items:
+    - 'ppa:linrunner/tlp'
+
+- name: TLP Pil ömrü koruyucu ve Isı dengeleyici kuruluyor
+  apt: name={{ item }}
+       force=yes
+       state=present
+  with_items:
+    - tlp
+    - tlp-rdw
+
+- name: TLP Pil ömrü koruyucu ve Isı dengeleyici çalıştırılıyor
+  command: sudo tlp start
