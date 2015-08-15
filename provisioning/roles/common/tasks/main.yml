@@ -23,7 +23,7 @@
     - gstreamer1.0-libav
 
 - name: Otomatik DVD/CD medya oynatımı etkinleştiriliyor
-  command: sudo /usr/share/doc/libdvdread4/install-css.s­h
+  command: sudo /usr/share/doc/libdvdread4/install-css.sh
 
 - name: Vlc Media Player kuruluyor
   apt: name={{ item }}
@@ -38,19 +38,6 @@
        state=present
   with_items:
     - flashplugin-installer
-
-- name: Java yazılım deposu ekleniyor
-  apt_repository: repo={{ item }}
-                  state=present
-  with_items:
-    - 'ppa:webupd8team/java'
-
-- name: Java kuruluyor
-  apt: name={{ item }}
-       force=yes
-       state=present
-  with_items:
-    - oracle-java9-installer
 
 - name: Arşiv formatları için destekler ve kısıtlı ekstralar kuruluyor
   apt: name={{ item }}
