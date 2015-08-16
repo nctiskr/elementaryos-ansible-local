@@ -99,7 +99,7 @@
   apt_repository: repo={{ item }}
                   state=present
   with_items:
-    - 'ppa:nooblab/apps'
+    - 'ppa:noobslab/apps'
 
 - name: Indicator Synapse kuruluyor
   apt: name={{ item }}
