@@ -121,13 +121,6 @@
   with_items:
     - elementary-tweaks
 
-- name: Steam oyun istemcisi kuruluyor
-  apt: name={{ item }}
-       force=yes
-       state=present
-  with_items:
-    - steam
-
 - name: Bleachbit sistem temizleyici kuruluyor
   apt: name={{ item }}
        force=yes
